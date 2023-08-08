@@ -62,7 +62,7 @@ fmt.Println(*p) // 输出“2”
 # 七、作用域
 
 # 八、语法
-## 1. for循环
+## 1. for循环遍历
 
 用法一：for 赋值表达式; 判断条件; 赋值同时控制变量增减 { }
 
@@ -126,3 +126,95 @@ for _, age := range ages {
     fmt.Printf("%d\n", age)
 }
 ```
+
+## 2. 循环控制语句
+1.首先，当然要第一个说一下break，和其他语言一样，直接结束循环。
+
+```
+func main() {
+	for i:=0; i<10;i++{
+		if i == 5{
+			break
+		}
+		fmt.Println(i)
+	}
+}
+```
+如何是循环嵌套，结束距离break最近的循环。当然如果想结束外层循环，可以通过指定标签来实现：
+
+```
+func main() {
+	label1:
+	for i:=0; i<10;i++{
+		//label2:
+		for j:=0; j<10;j++{
+			if j == 5{
+				//默认跳出最近的for循环,等同于 break label2
+				//break
+				//跳出外层循环也就是label1下的for循环
+				break label1
+			}
+			fmt.Println(j)
+		}
+		fmt.Println(i)
+	}
+}
+```
+
+2. continue 语句，结束本次循环，继续执行当前循环下的下一次循环。 也就是执行到continue时，不在执行下面语句，直接返回循环条件处继续执行。
+   多层嵌套和break用法相同，可以通过标签指明要跳过的是哪一层循环。
+
+```
+func main() {
+	for i:=0; i<10;i++{
+		for j:=0; j<10;j++{
+			if j == 5{
+				//不在执行输出j=5，直接跳到执行j++,然后判断j是否小于10，然后继续执行循环体
+				continue
+			}
+			fmt.Println("j= ", j)
+		}
+		fmt.Println("i=", i)
+	}
+}
+```
+
+3. return 语句，用在方法或者函数中，表示跳出所在的方法或函数。如果是普通方法，结束当前方法返回到调用处；如果是main 方法，则程序执行结束。
+
+
+```
+func main() {
+	for i:=0; i<10;i++{
+		for j:=0; j<10;j++{
+			if j == 5{
+				//不在输出j=5同时后面的循环结束，程序运行结束。
+				return
+			}
+			fmt.Println("j= ", j)
+		}
+		fmt.Println("i=", i)
+	}
+}
+```
+
+4. Go语言中还有一个特殊用法，goto语句，无条件地转移到程序中指定的行。
+   goto 语句可以和条件语句配合使用，可用来实现条件转移，跳出循环体等功能。
+
+
+```
+func main() {
+	for i:=0; i<10;i++{
+		if i == 5{
+			goto label1
+		}
+		fmt.Println("i=", i)
+	}
+	//因为用了goto，此输出会被直接跳过
+	fmt.Println("我被跳过了！")
+	label1:
+	fmt.Println("我是label1")
+}
+```
+需要注意的是，在Go程序设计中一般不主张使用goto语句，以免造成程序流程的混乱，使理解和调试程序都产生困难。
+
+
