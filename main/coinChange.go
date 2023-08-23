@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -9,12 +8,12 @@ import (
 零钱兑换  --- 贪心算法
 */
 
-func main() {
-	coins := []int{1, 2, 5}
-	amount := 11
-	numCoins := coinChange(coins, amount)
-	fmt.Printf("最少需要的硬币数：%d\n", numCoins)
-}
+//func main() {
+//	coins := []int{1, 2, 5}
+//	amount := 11
+//	numCoins := coinChange(coins, amount)
+//	fmt.Printf("最少需要的硬币数：%d\n", numCoins)
+//}
 
 func coinChange(coins []int, amount int) int {
 	// 面额按从大到小排序

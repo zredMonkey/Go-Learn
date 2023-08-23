@@ -1,18 +1,16 @@
 package main
 
-import "fmt"
-
 /**
 回溯算法  -- 全排列
 */
 
-func main() {
-	nums := []int{1, 2, 3}
-	permutations := permute(nums)
-	for _, permutation := range permutations {
-		fmt.Println(permutation)
-	}
-}
+//func main() {
+//	nums := []int{1, 2, 3}
+//	permutations := permute(nums)
+//	for _, permutation := range permutations {
+//		fmt.Println(permutation)
+//	}
+//}
 
 // 生成全排列的入口函数
 func permute(nums []int) [][]int {
